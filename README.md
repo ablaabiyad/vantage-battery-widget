@@ -1,6 +1,9 @@
 # vantage-battery-widget
 ![Battery Widget Screenshot](Screenshot_2.png)
 
+<img src="screenshot_2.png" width="200" style="margin-right:10px;">
+<img src="Screenshot_1.png" width="200">
+
 A GNOME Shell extension inspired by Lenovo Vantage battery info
 ######
 This is a battery extension inspired by the Lenovo Vantage battery widget.
