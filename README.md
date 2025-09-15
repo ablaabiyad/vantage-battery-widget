@@ -43,6 +43,7 @@ This extension was tested only in ubuntu 24.04 with Gnome shell 46
 **INSTALL**
 
 `mkdir -p ~/.local/share/gnome-shell/extensions/vantage-battery@laabca`
+
 `cd ~/.local/share/gnome-shell/extensions/vantage-battery@laabca`
 
 paste the stylesheet.css, extension.js and metadata.json
