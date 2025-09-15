@@ -1,0 +1,998 @@
+/* Horizontal Battery Extension Styles - Complete Version with Battery Details Section */
+
+/* Main container */
+.horizontal-battery-container {
+    spacing: 0px;
+    padding: 2px 6px;
+    transition-duration: 200ms;
+    transition-timing-function: ease-out;
+    border-radius: 6px;
+}
+
+.horizontal-battery-container:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Low battery warning animation */
+.low-battery-container {
+    animation: low-battery-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes low-battery-pulse {
+    0%, 100% { 
+        background-color: rgba(244, 67, 54, 0.1);
+        transform: scale(1.0);
+    }
+    50% { 
+        background-color: rgba(244, 67, 54, 0.2);
+        transform: scale(1.02);
+    }
+}
+
+/* Battery Outline - Default (Dark Theme) */
+.battery-outline {
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 2px;
+    background-color: rgba(0, 0, 0, 0.3);
+    width: 46px;
+    height: 18px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 200ms ease-out;
+}
+
+.battery-outline:hover {
+    border-color: rgba(255, 255, 255, 0.9);
+}
+
+/* Battery Fill Container */
+.battery-fill-container {
+    width: 100%;
+    height: 100%;
+}
+
+/* Battery Fill (remaining charge - colored part) */
+.battery-fill {
+    height: 100% !important;
+    border-radius: 1px 0px 0px 1px !important;
+    transition: width 500ms cubic-bezier(0.4, 0.0, 0.2, 1), 
+                background-color 200ms ease-out,
+                box-shadow 200ms ease-out;
+    box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.2);
+    background-image: none !important;
+}
+
+/* Battery Empty (consumed charge - transparent/dark part) */
+.battery-empty {
+    height: 100% !important;
+    background-color: transparent !important;
+    border-radius: 0px 1px 1px 0px !important;
+    transition: width 500ms cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+/* Battery Fill Colors */
+.battery-fill.battery-critical {
+    background-color: #F44336 !important; /* Red */
+}
+
+.battery-fill.battery-low {
+    background-color: #FF9800 !important; /* Orange */
+}
+
+.battery-fill.battery-medium {
+    background-color: #FFC107 !important; /* Yellow */
+}
+
+.battery-fill.battery-high {
+    background-color: #4CAF50 !important; /* Green */
+}
+
+.battery-fill.battery-gray {
+    background-color: #808080 !important;
+}
+
+/* Charging Animation */
+.battery-fill.charging {
+    animation: charging-pulse 2s ease-in-out infinite;
+    box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.3),
+                0 0 8px rgba(76, 175, 80, 0.4);
+}
+
+@keyframes charging-pulse {
+    0% { 
+        opacity: 1; 
+        transform: scaleY(1.0);
+        filter: brightness(1.0);
+    }
+    50% { 
+        opacity: 0.8; 
+        transform: scaleY(0.95);
+        filter: brightness(1.2);
+    }
+    100% { 
+        opacity: 1; 
+        transform: scaleY(1.0);
+        filter: brightness(1.0);
+    }
+}
+
+/* Low battery critical state */
+.battery-fill.low-battery {
+    animation: low-battery-blink 1s ease-in-out infinite;
+    box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.2),
+                0 0 6px rgba(244, 67, 54, 0.5);
+}
+
+@keyframes low-battery-blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+}
+
+/* Battery Tip - Default (Dark Theme) */
+.battery-tip {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 0px 1px 1px 0px;
+    margin-left: -1px;
+    width: 2px;
+    height: 10px;
+    transition: background-color 200ms ease-out;
+}
+
+.horizontal-battery-container:hover .battery-tip {
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+/* Charging Icon (Thunder/Lightning) - Default (Dark Theme) */
+.battery-charging-icon {
+    font-size: 12px;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.95);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    margin-right: 2px;
+}
+
+.battery-charging-icon.charging-pulse {
+    animation: charging-icon-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes charging-icon-pulse {
+    0%, 100% { 
+        opacity: 1; 
+        transform: scale(1.0);
+        color: rgba(255, 255, 255, 0.95);
+    }
+    50% { 
+        opacity: 0.7; 
+        transform: scale(1.1);
+        color: rgba(255, 255, 0, 1);
+    }
+}
+
+/* Percentage Label - Default (Dark Theme) */
+.battery-percentage {
+    font-size: 12px;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.95);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 10;
+    transition: color 200ms ease-out, text-shadow 200ms ease-out;
+    font-variant: small-caps;
+}
+
+/* =========================== */
+/* MINI BATTERY INDICATORS */
+/* =========================== */
+
+/* Mini Battery Container */
+.mini-battery-container {
+    spacing: 0px;
+    padding: 2px 4px;
+    margin-right: 8px;
+    transition-duration: 200ms;
+    transition-timing-function: ease-out;
+}
+
+/* Mini Battery Outline - Default (Dark Theme) */
+.mini-battery-outline {
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 1px;
+    background-color: rgba(0, 0, 0, 0.3);
+    width: 42px;
+    height: 15px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 200ms ease-out;
+}
+
+/* Mini Battery Fill Container */
+.mini-battery-fill-container {
+    width: 100%;
+    height: 100%;
+}
+
+/* Mini Battery Fill */
+.mini-battery-fill {
+    height: 100% !important;
+    border-radius: 0px;
+    transition: width 400ms cubic-bezier(0.4, 0.0, 0.2, 1), 
+                background-color 200ms ease-out;
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+    background-image: none !important;
+}
+
+/* Mini Battery Empty */
+.mini-battery-empty {
+    height: 100% !important;
+    background-color: transparent !important;
+    border-radius: 0px;
+    transition: width 400ms cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+/* Mini Battery Fill Colors */
+.mini-battery-fill.mini-battery-critical {
+    background-color: #F44336 !important; /* Red */
+}
+
+.mini-battery-fill.mini-battery-low {
+    background-color: #FF9800 !important; /* Orange */
+}
+
+.mini-battery-fill.mini-battery-medium {
+    background-color: #FFC107 !important; /* Yellow */
+}
+
+.mini-battery-fill.mini-battery-high {
+    background-color: #4CAF50 !important; /* Green */
+}
+
+/* Mini Battery Tip - Default (Dark Theme) */
+.mini-battery-tip {
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 0px 1px 1px 0px;
+    margin-left: -1px;
+    width: 2px;
+    height: 6px;
+    transition: background-color 200ms ease-out;
+}
+
+/* Mini Battery Percentage Label - Default (Dark Theme) */
+.mini-battery-percentage {
+    font-size: 10px;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.95);
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 10;
+    transition: color 200ms ease-out, text-shadow 200ms ease-out;
+    font-variant: small-caps;
+}
+
+/* =========================== */
+/* END MINI BATTERY INDICATORS */
+/* =========================== */
+
+/* Popup menu styling - FIXED WIDTH */
+.horizontal-battery-menu {
+    min-width: 280px !important;
+    max-width: 480px !important;
+    font-size: 12px;
+}
+
+.horizontal-battery-menu .popup-menu-item {
+    font-size: 12px;
+    padding: 8px 16px;
+    transition: background-color 150ms ease-out, color 150ms ease-out;
+    font-variant: small-caps;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.horizontal-battery-menu .popup-menu-item:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 1.0);
+}
+
+.horizontal-battery-menu .popup-separator-menu-item {
+    margin: 0px 0;
+}
+
+/* Hostname styling - Default (Dark Theme) */
+.battery-hostname {
+    font-weight: bold;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.9);
+    text-align: center;
+    font-variant: small-caps;
+    padding: 0px 6px !important;   /* much smaller than 8px 16px */
+    margin: 0 !important;
+}
+
+/* Large Battery Visualization - SINGLE LINE VERSION */
+.battery-visual-item {
+    padding: 0px 8px !important;
+}
+
+.battery-visual-container {
+    padding: 0px;
+    spacing: 6px;
+}
+
+.large-battery-container {
+    spacing: 0px !important;
+    padding: 0px !important;
+    margin: 0px auto !important;
+    text-align: center;
+    x-align: center !important;
+    width: 100% !important;
+}
+
+.large-battery-outline {
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 0px;
+    background-color: rgba(0, 0, 0, 0.3);
+    width: 220px !important;
+    height: 54px;
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box !important;
+    padding: 0px !important;
+    /* CENTER THE BATTERY OUTLINE */
+    margin: 0px auto !important;
+    x-align: center !important;
+    /* Ensure it's centered within its parent */
+    align-self: center !important;
+}
+
+/* Large Battery Fill Container */
+.large-battery-fill-container {
+    width: 100%;
+    height: 100%;
+    position: relative !important;
+    spacing: 0px !important;
+    padding: 0px !important;
+    margin: 0px !important;
+    x-align: center !important;
+    width: 100% !important;
+}
+
+/* Large Battery Fill */
+.large-battery-fill {
+    height: 100% !important;
+    border-radius: 0px 0px 0px 0px !important;
+    transition: width 800ms cubic-bezier(0.4, 0.0, 0.2, 1), 
+                background-color 300ms ease-out,
+                box-shadow 300ms ease-out;
+    box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.2);
+    background-image: none !important;
+    position: absolute !important;
+    top: 0px !important;
+    left: 0px !important;
+    margin: 0px !important;
+    padding: 0px !important;
+}
+
+/* Large Battery Empty */
+.large-battery-empty {
+    height: 100% !important;
+    background-color: transparent !important;
+    border-radius: 0px 4px 4px 0px !important;
+    transition: width 800ms cubic-bezier(0.4, 0.0, 0.2, 1);
+    position: absolute !important;
+    top: 0px !important;
+    right: 0px !important;
+    margin: 0px !important;
+    padding: 0px !important;
+}
+
+/* Large Battery Fill Colors */
+.large-battery-fill.large-battery-critical {
+    background-color: #F44336 !important;
+}
+
+.large-battery-fill.large-battery-low {
+    background-color: #FF9800 !important;
+}
+
+.large-battery-fill.large-battery-medium {
+    background-color: #FFC107 !important;
+}
+
+.large-battery-fill.large-battery-high {
+    background-color: #4CAF50 !important;
+}
+
+/* Large Battery Charging Animation */
+.large-battery-fill.large-charging {
+    animation: large-charging-pulse 2.5s ease-in-out infinite;
+    box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.3),
+                0 0 12px rgba(76, 175, 80, 0.4);
+}
+
+@keyframes large-charging-pulse {
+    0% { 
+        opacity: 1; 
+        transform: scaleY(1.0);
+        filter: brightness(1.0);
+    }
+    50% { 
+        opacity: 0.8; 
+        transform: scaleY(0.98);
+        filter: brightness(1.2);
+    }
+    100% { 
+        opacity: 1; 
+        transform: scaleY(1.0);
+        filter: brightness(1.0);
+    }
+}
+
+/* Large Battery Tip - Default (Dark Theme) */
+.large-battery-tip {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 0px 0px 0px 0px;
+    margin-left: 0px;
+    width: 4px;
+    height: 27px;
+    transition: background-color 300ms ease-out;
+}
+
+/* Large Battery Content (text overlay) - SIMPLIFIED FOR SINGLE LINE */
+.large-battery-content {
+    width: 100%;
+    height: 100% !important;
+    pointer-events: none;
+    z-index: 10;
+    /* Use Flexbox for reliable center alignment */
+    display: flex;
+    flex-direction: row;
+    justify-content: center; /* Center vertically */
+    align-items: center; /* Center horizontally */
+        line-height: 0.5 !important;
+}
+
+/* Ensure percentage container centers properly */
+.large-percentage-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+        line-height: 0.5 !important;
+}
+
+/* Large Battery Text - Single Line Version */
+.large-battery-percentage {
+    font-size: 18pt !important; /* Slightly larger since we have more space */
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.95);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    display: inline-flex;
+    align-items: center;
+    line-height: 0.6 !important; /* collapse text box height */
+    margin-bottom: 0 !important; 
+    padding-bottom: 0 !important;
+}
+
+/* Single status line - larger and more prominent */
+.large-battery-status {
+    font-size: 10pt !important; /* Larger since it's the only line */
+    font-weight: normal;
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+    max-width: 100%;
+    ellipsize: end;
+    font-variant: small-caps;
+    text-align: center;
+    line-height: 0.5 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    white-space: nowrap;
+}
+
+.large-battery-status.charging-status {
+    color: rgba(76, 175, 80, 1);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+/* =========================== */
+/* BATTERY DETAILS SECTION */
+/* =========================== */
+
+/* Battery Details Item */
+.battery-details-item {
+    font-variant: small-caps;
+    padding: 1px 16px !important;
+    transition: color 150ms ease-out;
+}
+
+/* Battery Details Container */
+.battery-details-container {
+    spacing: 0px !important;
+    padding: 0px !important;
+    margin: 0px !important;
+    width: 100% !important;
+}
+
+/* Battery Details Row */
+.battery-details-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    /* Ensure row uses full width */
+    width: 100%;
+    /* Add spacing between columns/cells if needed */
+    column-gap: 10px;
+}
+
+/* Battery Detail Label - Default (Dark Theme) */
+.battery-detail-label {
+    font-size: 8pt !important;
+    font-weight: normal;
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+    font-variant: small-caps;
+    transition: color 150ms ease-out, text-shadow 150ms ease-out;
+        /* Force all labels to equal width for alignment */
+    min-width: 60px;
+    max-width: 90px;
+    display: inline-block;
+    text-align: left;
+    /* Add some margin to separate label from value */
+    margin-right: 0px;
+}
+
+/* =========================== */
+/* END BATTERY DETAILS SECTION */
+/* =========================== */
+
+/* Menu item labels - Default (Dark Theme) */
+.horizontal-battery-menu .popup-menu-item label {
+    font-size: 10pt !important;
+    font-variant: small-caps !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6) !important;
+}
+
+/* Battery detail items styling - Default (Dark Theme) */
+.battery-detail-item {
+    font-variant: small-caps;
+    transition: color 150ms ease-out;
+}
+
+.battery-detail-item label {
+    color: rgba(255, 255, 255, 0.9) !important;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6) !important;
+    font-size: 8pt !important;
+}
+
+/* Bluetooth device items styling with mini battery layout */
+.bluetooth-device-item {
+    font-variant: small-caps;
+    transition: color 150ms ease-out;
+    padding: 2px 12px !important;
+
+}
+
+.bluetooth-device-layout {
+    spacing: 2px !important;
+    padding: 0px !important;
+    margin: 0px !important;
+    width: 100% !important;
+}
+
+.bluetooth-device-info {
+    spacing: 2px !important;
+    padding: 0px !important;
+    margin: 0px !important;
+}
+
+.bluetooth-device-label {
+    color: rgba(255, 255, 255, 0.9) !important;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6) !important;
+    font-size: 10pt !important;
+    word-break: break-word !important;
+    white-space: normal !important;
+    y-align: center !important;
+    font-variant: small-caps;
+}
+
+/* Bluetooth battery level color coding */
+.bluetooth-battery-critical {
+    border-left: 3px solid #F44336;
+}
+
+.bluetooth-battery-low {
+    border-left: 3px solid #FF9800;
+}
+
+.bluetooth-battery-medium {
+    border-left: 3px solid #FFC107;
+}
+
+.bluetooth-battery-high {
+    border-left: 3px solid #4CAF50;
+}
+
+/* =========================== */
+/* LIGHT THEME OVERRIDES */
+/* =========================== */
+
+/* Light Theme - Mini Battery Indicators */
+.light-theme .mini-battery-outline {
+    border-color: rgba(0, 0, 0, 0.6) !important;
+    background-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.light-theme .mini-battery-tip {
+    background-color: rgba(0, 0, 0, 0.7) !important;
+}
+
+.light-theme .mini-battery-percentage {
+    color: rgba(0, 0, 0, 0.87) !important;
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.8) !important;
+}
+
+/* Light Theme - Menu Items */
+.light-theme .horizontal-battery-menu .popup-menu-item {
+    color: rgba(0, 0, 0, 0.87) !important;
+}
+
+.light-theme .horizontal-battery-menu .popup-menu-item:hover {
+    background-color: rgba(0, 0, 0, 0.05) !important;
+    color: rgba(0, 0, 0, 1.0) !important;
+}
+
+/* Light Theme - Menu Item Labels */
+.light-theme .horizontal-battery-menu .popup-menu-item label {
+    color: rgba(0, 0, 0, 0.87) !important;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.6) !important;
+}
+
+/* Light Theme - Hostname */
+.light-theme .battery-hostname {
+    color: rgba(0, 0, 0, 0.87) !important;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.6) !important;
+}
+
+/* Light Theme - Large Battery Outline */
+.light-theme .large-battery-outline {
+    border-color: rgba(0, 0, 0, 0.6) !important;
+    background-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Light Theme - Large Battery Tip */
+.light-theme .large-battery-tip {
+    background-color: rgba(0, 0, 0, 0.7) !important;
+}
+
+/* Light Theme - Large Battery Text - Single Line Version */
+.light-theme .large-battery-percentage {
+    color: rgba(0, 0, 0, 0.87) !important;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8) !important;
+    font-size: 18pt !important;
+}
+
+.light-theme .large-battery-status {
+    color: rgba(0, 0, 0, 0.8) !important;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.6) !important;
+    font-size: 10pt !important;
+}
+
+.light-theme .large-battery-status.charging-status {
+    color: #2E7D32 !important; /* Darker green for light backgrounds */
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.6) !important;
+}
+
+/* Light Theme - Detail Items */
+.light-theme .battery-detail-item {
+    color: rgba(0, 0, 0, 0.87) !important;
+}
+
+.light-theme .battery-detail-item label {
+    color: rgba(0, 0, 0, 0.87) !important;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.6) !important;
+}
+
+/* Light Theme - Battery Details Labels */
+.light-theme .battery-detail-label {
+    color: rgba(0, 0, 0, 0.87) !important;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.6) !important;
+}
+
+/* Light Theme - Bluetooth Device Items */
+.light-theme .bluetooth-device-item {
+    color: rgba(0, 0, 0, 0.87) !important;
+}
+
+.light-theme .bluetooth-device-label {
+    color: rgba(0, 0, 0, 0.87) !important;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.6) !important;
+}
+
+/* Light Theme - Container Hover */
+.light-theme .horizontal-battery-container:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .battery-outline {
+        border-width: 2px;
+        border-color: currentColor;
+    }
+    
+    .battery-percentage {
+        font-weight: 900;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
+    }
+    
+    .battery-fill {
+        border: 1px solid rgba(255, 255, 255, 0.5);
+    }
+    
+    .mini-battery-outline {
+        border-width: 2px;
+        border-color: currentColor;
+    }
+    
+    .mini-battery-percentage {
+        font-weight: 900;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 1);
+    }
+    
+    .mini-battery-fill {
+        border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+    
+    .horizontal-battery-menu .popup-menu-item {
+        font-weight: bold;
+        border: 1px solid transparent;
+        padding: 8px 16px !important;  /* tighter */
+
+    }
+    
+    .horizontal-battery-menu .popup-menu-item:hover {
+        border-color: currentColor;
+    }
+    
+    .battery-hostname {
+        font-weight: 900;
+        text-decoration: underline;
+        padding: 2px 6px !important;   /* Much smaller */
+        margin: 0 !important;
+    }
+    
+    .large-battery-outline {
+        border-width: 3px;
+        border-color: currentColor;
+    }
+    
+    .large-battery-percentage {
+        font-weight: 900;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
+        vertical-align: middle;
+    }
+    
+    .large-battery-status {
+        font-weight: bold;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
+    }
+    
+    .battery-detail-label {
+        font-weight: bold;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
+    }
+    
+    .battery-details-item {
+        border: 1px solid transparent;
+    }
+    
+    .battery-details-item:hover {
+        border-color: currentColor;
+    }
+    
+    .bluetooth-device-item {
+        font-weight: bold;
+        border: 1px solid transparent;
+    }
+    
+    .bluetooth-device-item:hover {
+        border-color: currentColor;
+    }
+    
+    .bluetooth-battery-critical,
+    .bluetooth-battery-low,
+    .bluetooth-battery-medium,
+    .bluetooth-battery-high {
+        border-left-width: 5px !important;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .horizontal-battery-container,
+    .battery-outline,
+    .battery-fill,
+    .battery-tip,
+    .battery-percentage,
+    .mini-battery-container,
+    .mini-battery-outline,
+    .mini-battery-fill,
+    .mini-battery-tip,
+    .mini-battery-percentage,
+    .battery-detail-label {
+        transition: none;
+        animation: none;
+    }
+    
+    .battery-fill.charging,
+    .battery-fill.low-battery,
+    .low-battery-container,
+    .large-battery-fill.large-charging,
+    .battery-charging-icon.charging-pulse {
+        animation: none;
+    }
+    
+    .bluetooth-device-item,
+    .battery-details-item {
+        transition: none;
+    }
+}
+
+/* Focus indicators for accessibility */
+.horizontal-battery-container:focus {
+    outline: 2px solid rgba(53, 132, 228, 0.8);
+    outline-offset: 2px;
+}
+
+/* Bluetooth specific hover effects */
+.bluetooth-device-item:hover {
+    background-color: rgba(255, 255, 255, 0.02);
+    transform: translateX(2px);
+    transition: transform 150ms ease-out, background-color 150ms ease-out;
+}
+
+.light-theme .bluetooth-device-item:hover {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+/* Battery details hover effect */
+.battery-details-item:hover {
+    background-color: rgba(255, 255, 255, 0.02);
+    transition: background-color 150ms ease-out;
+}
+
+.light-theme .battery-details-item:hover {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+/* Bluetooth section header styling */
+.bluetooth-section-header {
+    font-weight: bold;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.95);
+    text-align: center;
+    font-variant: small-caps;
+    padding: 4px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 4px;
+}
+
+.battery-hostname,
+.bluetooth-section-header {
+    margin-left: 16px !important;
+    margin-right: 16px !important;
+}
+
+.light-theme .bluetooth-section-header {
+    color: rgba(0, 0, 0, 0.87) !important;
+    border-bottom-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Error state for Bluetooth */
+.bluetooth-error {
+    color: rgba(244, 67, 54, 0.8);
+    font-style: italic;
+}
+
+.light-theme .bluetooth-error {
+    color: rgba(244, 67, 54, 1) !important;
+}
+
+/* Bluetooth device disconnect animation */
+.bluetooth-device-disconnected {
+    opacity: 0.5;
+    filter: grayscale(100%);
+    transition: opacity 300ms ease-out, filter 300ms ease-out;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 1200px) {
+    .horizontal-battery-menu {
+        min-width: 180px !important;
+        max-width: 180px !important;
+    }
+    
+    .large-battery-outline {
+        width: 140px !important;
+    }
+    
+    .bluetooth-device-item,
+    .battery-details-item {
+        padding: 0px 12px !important;
+    }
+    
+    .bluetooth-device-label,
+    .battery-detail-label {
+        font-size: 8pt !important;
+    }
+    
+    .mini-battery-container {
+    spacing: 0px;
+    padding: 1px 2px; /* Reduced padding */
+    margin-right: 4px; /* Reduced margin */
+    transition-duration: 200ms;
+    transition-timing-function: ease-out;
+    }
+    
+    .mini-battery-outline {
+        width: 36px;
+        height: 12px;
+    }
+    
+    .mini-battery-percentage {
+        font-size: 10px !important;
+    }
+    
+    .battery-details-row {
+        spacing: 6px !important;
+        padding: 0px 0px !important;   /* Add this line */
+
+    }
+}
+
+/* Dark mode specific enhancements */
+@media (prefers-color-scheme: dark) {
+    .battery-outline {
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+    }
+    
+    .large-battery-outline {
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+    }
+    
+    .mini-battery-outline {
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+    }
+    
+    .bluetooth-device-item,
+    .battery-details-item {
+        background-color: rgba(255, 255, 255, 0.01);
+    }
+}
+
+/* Light mode specific enhancements */
+@media (prefers-color-scheme: light) {
+    .light-theme .large-battery-outline {
+        box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
+    }
+    
+    .light-theme .mini-battery-outline {
+        box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
+    }
+    
+    .light-theme .bluetooth-device-item,
+    .light-theme .battery-details-item {
+        background-color: rgba(0, 0, 0, 0.01);
+    }
+}

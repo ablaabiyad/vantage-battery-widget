@@ -1,0 +1,13 @@
+{
+  "uuid": "vantage-battery@laabca",
+  "name": "Vantage Battery Widget",
+  "description": "A GNOME Shell extension inspired by Lenovo Vantage battery info",
+  "version": 1,
+  "shell-version": [
+    "46",
+    "47"
+  ],
+  "url": "https://github.com/yourusername/",
+  "settings-schema": "org.gnome.shell.extensions.vantage-battery-widget"
+}
+
