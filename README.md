@@ -1,8 +1,8 @@
 # vantage-battery-widget
 
 <div style="display: flex; gap: 10px;">
-  <img src="Screenshot_2.png" width="350">
-  <img src="Screenshot_1.png" width="400">
+  <img src="Screenshot_2.png" >
+  <img src="Screenshot_1.png" >
 </div>
 
 A GNOME Shell extension inspired by Lenovo Vantage battery info
