@@ -5,6 +5,7 @@
   <img src="Screenshot_1.png" >
 </div>
 
+
 A GNOME Shell extension inspired by Lenovo Vantage battery info
 ######
 This is a battery extension inspired by the Lenovo Vantage battery widget.
