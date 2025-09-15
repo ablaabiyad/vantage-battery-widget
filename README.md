@@ -1,5 +1,4 @@
 # vantage-battery-widget
-![Battery Widget Screenshot](Screenshot_2.png)
 
 <div style="display: flex; gap: 10px;">
   <img src="Screenshot_2.png" width="200">
