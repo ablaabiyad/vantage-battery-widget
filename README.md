@@ -1,7 +1,7 @@
 # vantage-battery-widget
 
 <div style="display: flex; gap: 10px;">
-  <img src="Screenshot_2.png" width="300">
+  <img src="Screenshot_2.png" width="350">
   <img src="Screenshot_1.png" width="400">
 </div>
 
